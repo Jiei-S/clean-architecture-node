@@ -1,0 +1,41 @@
+version: "3.8"
+services:
+  api:
+    build:
+      context: .
+      dockerfile: ./build/local/Dockerfile
+    volumes:
+      - .:/usr/src/api
+    ports:
+      - "4000:4000"
+    env_file:
+      - .env
+    networks:
+      - node-nw
+    depends_on:
+      mysql:
+        condition: service_healthy
+
+  mysql:
+    image: mysql:8.1.0
+    platform: linux/amd64
+    ports:
+      - "3306:3306"
+    volumes:
+      - ./build/local/mysql/:/etc/mysql/conf.d/:ro
+      - mysql_data:/var/lib/mysql
+    env_file:
+      - .env
+    networks:
+      - node-nw
+    healthcheck:
+      test: ["CMD", "mysqladmin" ,"ping", "-h", "localhost"]
+      timeout: 20s
+      retries: 10
+
+volumes:
+  mysql_data: null
+
+networks:
+  node-nw:
+    external: true
