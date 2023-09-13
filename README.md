@@ -4,12 +4,57 @@ This is a boilerplate for clean architecture and Node REST projects.
 
 # Architecture
 
-xxx
-
 ## Directories
 ```bash
-
+.
+├── api # API Client
+│   └── v1.0
+│       ├── clients
+│       │   └── <CONTEXT>-api.ts
+│       └── models
+│           ├── index.ts
+│           ├── <CONTEXT>-create-params.ts
+│           └── <CONTEXT>-response.ts
+├── src
+│   ├── adapters
+│   │   ├── controllers
+│   │   │   └── internal
+│   │   │       └── <CONTEXT>
+│   │   │           ├── <CONTEXT>-controller.ts
+│   │   │           └── <CONTEXT>-model.ts
+│   │   └── gateways
+│   │       └── repositories
+│   │           └── typeorm
+│   │               └── <CONTEXT>
+│   │                   ├── <CONTEXT>-mapper.ts
+│   │                   └── <CONTEXT>-repository.ts
+│   ├── domain
+│   │   └── models
+│   │       └── <CONTEXT>
+│   │           ├── <CONTEXT>-entity.ts
+│   │           ├── <CONTEXT>-repository-interface.ts
+│   │           └── <CONTEXT>-vo.ts
+│   ├── index.ts # entrypoint
+│   ├── infrastructure
+│   │   ├── express
+│   │   │   ├── app.ts
+│   │   │   └── xxxxx
+│   │   └── typeorm
+│   │       └── xxxxx
+│   ├── middlewares
+│   │   └── xxxxx
+│   └── usecases
+│       └── <CONTEXT>
+│           ├── <CONTEXT>-dto.ts
+│           ├── <CONTEXT>-interface.ts
+│           └── <CONTEXT>-usecase.ts
+・
+・
+・
 ```
+
+For more information, see [Boilerplate Clean Architecture](https://github.com/Jiei-S/boilerplate-clean-architecture#readme).
+
 
 # Get Started
 
@@ -21,7 +66,7 @@ $ make dev
 
 # How To Use
 
-## Add project
+## Create
 
 ```bash
 $ curl --location 'http://localhost:4000/projects' \
@@ -41,7 +86,7 @@ $ curl --location 'http://localhost:4000/projects' \
 }
 ```
 
-## Find user
+## Find
 
 ```bash
 $ curl --location 'http://localhost:4000/projects/<ID>'
@@ -82,3 +127,13 @@ $ make migration-run
 # down
 $ make migration-revert
 ```
+
+## Test
+
+### Lint & Format
+
+Automatically run when you commit by `Husky` and `Lint-Staged`.
+
+### E2E Test
+
+xxxxx

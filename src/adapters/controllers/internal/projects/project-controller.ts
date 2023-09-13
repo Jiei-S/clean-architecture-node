@@ -1,17 +1,5 @@
-import {
-  Body,
-  Controller,
-  Get,
-  Path,
-  Post,
-  Route,
-  SuccessResponse,
-  Tags,
-} from "tsoa";
-import {
-  inject,
-  provideSingleton,
-} from "../../../../middlewares/inversify/util";
+import { Body, Controller, Get, Path, Post, Route, SuccessResponse, Tags } from "tsoa";
+import { inject, provideSingleton } from "../../../../middlewares/inversify/util";
 import { ProjectCreateParams, ProjectResponse } from "./project-model";
 import { IProjectUseCase } from "../../../../usecases/projects/project-interface";
 import { ProjectUsecase } from "../../../../usecases/projects/project-usecase";
@@ -24,12 +12,8 @@ export class ProjectController extends Controller {
 
   @Post()
   @SuccessResponse("200", "Return a project")
-  public async createProject(
-    @Body() params: ProjectCreateParams
-  ): Promise<ProjectResponse> {
-    return ProjectResponse.fromDTO(
-      await this.projectUsecase.createProject(ProjectCreateParams.toDTO(params))
-    );
+  public async createProject(@Body() params: ProjectCreateParams): Promise<ProjectResponse> {
+    return ProjectResponse.fromDTO(await this.projectUsecase.createProject(ProjectCreateParams.toDTO(params)));
   }
 
   @Get("{id}")
