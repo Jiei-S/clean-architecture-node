@@ -69,7 +69,11 @@
 				"tags": [
 					"Project"
 				],
-				"security": [],
+				"security": [
+					{
+						"AUTH0_USER": []
+					}
+				],
 				"parameters": [],
 				"requestBody": {
 					"required": true,
@@ -101,7 +105,11 @@
 				"tags": [
 					"Project"
 				],
-				"security": [],
+				"security": [
+					{
+						"AUTH0_USER": []
+					}
+				],
 				"parameters": [
 					{
 						"in": "path",

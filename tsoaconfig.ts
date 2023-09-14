@@ -20,6 +20,7 @@ import { generateRoutes, generateSpec, ExtendedRoutesConfig, ExtendedSpecConfig 
     noImplicitAdditionalProperties: "throw-on-extras",
     routesDir: "src/infrastructure/express",
     controllerPathGlobs: ["src/adapters/controllers/**/*.ts"],
+    authenticationModule: "src/infrastructure/express/authentication.ts",
     iocModule: "src/middlewares/inversify/ioc.ts",
   };
 
