@@ -18,4 +18,4 @@ WORKDIR /usr/src/api
 
 COPY . .
 
-CMD ["/bin/sh", "./build/local/entrypoint.sh"]
+CMD ["/bin/sh", "./build/local/entrypoint.e2e.sh"]

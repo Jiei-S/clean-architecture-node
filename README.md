@@ -2,6 +2,28 @@
 
 This is a boilerplate for clean architecture and Node REST projects.
 
+### Tech Stack
+
+Application
+- Node.js
+- TypeScript
+- Express
+
+Database
+- MySQL
+- TypeORM
+
+API
+- OpenAPI
+- tsoa
+
+CI
+- Husky
+- ESLint
+- Prettier
+- Jest
+
+
 # Architecture
 
 ## Directories
@@ -12,16 +34,14 @@ This is a boilerplate for clean architecture and Node REST projects.
 │       ├── clients
 │       │   └── <CONTEXT>-api.ts
 │       └── models
-│           ├── index.ts
 │           ├── <CONTEXT>-create-params.ts
 │           └── <CONTEXT>-response.ts
 ├── src
 │   ├── adapters
 │   │   ├── controllers
-│   │   │   └── internal
-│   │   │       └── <CONTEXT>
-│   │   │           ├── <CONTEXT>-controller.ts
-│   │   │           └── <CONTEXT>-model.ts
+│   │   │   └── <CONTEXT>
+│   │   │       ├── <CONTEXT>-model.ts
+│   │   │       └── <CONTEXT>-controller.ts
 │   │   └── gateways
 │   │       └── repositories
 │   │           └── typeorm
@@ -48,12 +68,12 @@ This is a boilerplate for clean architecture and Node REST projects.
 │           ├── <CONTEXT>-dto.ts
 │           ├── <CONTEXT>-interface.ts
 │           └── <CONTEXT>-usecase.ts
-・
-・
+├── tests
+│   └── e2e
 ・
 ```
 
-For more information, see [Boilerplate Clean Architecture](https://github.com/Jiei-S/boilerplate-clean-architecture#readme).
+For more details, see [Boilerplate Clean Architecture](https://github.com/Jiei-S/boilerplate-clean-architecture#readme).
 
 
 # Get Started
@@ -106,16 +126,17 @@ $ curl --location 'http://localhost:4000/projects/<ID>'
 ## Generate API Client and Router
 
 You need to update api client and router by running the following command.  
-API Client will be generated in `api/<VERSION>/**` and router will be generated in `src/infrastructure/express`.
 
 ```bash
 $ make api-gen
 ```
 
+API Client will be generated in `api/<VERSION>/**` and router will be generated in `src/infrastructure/express`.
+
+
 ## Migration
 
 You need to run the following commands to update migration.  
-Migration will be generated in `src/infrastructure/typeorm/migrations/**`.
 
 ```bash
 # generate
@@ -128,12 +149,23 @@ $ make migration-run
 $ make migration-revert
 ```
 
+Migration will be generated in `src/infrastructure/typeorm/migrations/**`.
+
+
 ## Test
 
 ### Lint & Format
 
-Automatically run when you commit by `Husky` and `Lint-Staged`.
+Automatically run when you commit.
 
 ### E2E Test
 
-xxxxx
+To run E2E test, you need to run the following commands or GitHub Actions Workflow.
+
+```bash
+# e2e container up and migration run
+$ make e2e-up
+
+# e2e run
+$ make e2e-run
+```

@@ -1,6 +1,6 @@
 import app from "./infrastructure/express/app";
 
-const port = process.env.PORT || 4000;
+const port = process.env.API_PORT || 4000;
 const server = app.listen(port, () => {
   console.log(`Running server at http://localhost:${port}`);
 });

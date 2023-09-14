@@ -7,12 +7,14 @@ import express from "express";
 import rateLimit from "express-rate-limit";
 import helmet from "helmet";
 import { RegisterRoutes } from "./routes";
-import TypeORMDataSource from "../typeorm/connection";
+import dataSource from "../typeorm/connection";
 import { errorHandler, startHandler } from "./handler";
 
-TypeORMDataSource.initialize().catch((err) => {
-  console.error(err);
-});
+if (process.env.NODE_ENV !== "e2e") {
+  dataSource.initialize().catch((err) => {
+    console.error(err);
+  });
+}
 
 const app = express();
 

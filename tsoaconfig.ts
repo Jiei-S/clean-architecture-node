@@ -1,9 +1,4 @@
-import {
-  generateRoutes,
-  generateSpec,
-  ExtendedRoutesConfig,
-  ExtendedSpecConfig,
-} from "tsoa";
+import { generateRoutes, generateSpec, ExtendedRoutesConfig, ExtendedSpecConfig } from "tsoa";
 
 (async () => {
   const specOptions: ExtendedSpecConfig = {
@@ -12,7 +7,7 @@ import {
     outputDirectory: "src/infrastructure/express",
     specVersion: 3,
     version: "1.0.0",
-    controllerPathGlobs: ["src/adapters/controllers/internal/**/*.ts"],
+    controllerPathGlobs: ["src/adapters/controllers/**/*.ts"],
     name: "API",
     host: "localhost:4000",
     schemes: ["http"],
@@ -24,8 +19,7 @@ import {
     entryFile: "src/index.ts",
     noImplicitAdditionalProperties: "throw-on-extras",
     routesDir: "src/infrastructure/express",
-    controllerPathGlobs: ["src/adapters/controllers/internal/**/*.ts"],
-    // authenticationModule: "src/middlewares/authentication.ts",
+    controllerPathGlobs: ["src/adapters/controllers/**/*.ts"],
     iocModule: "src/middlewares/inversify/ioc.ts",
   };
 

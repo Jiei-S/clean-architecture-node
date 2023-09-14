@@ -1,34 +1,33 @@
 version: "3.8"
 services:
-  api:
+  api.e2e:
     build:
       context: .
-      dockerfile: ./build/local/Dockerfile
+      dockerfile: ./build/local/Dockerfile.e2e
     volumes:
       - .:/usr/src/api
     ports:
-      - "4000:4000"
-      - "9229:9229"
+      - "4001:4000"
     env_file:
-      - .env
+      - .env.e2e
     networks:
       - node-nw
 
-  mysql:
+  mysql.e2e:
     image: mysql:8.1.0
     platform: linux/amd64
     ports:
-      - "3306:3306"
+      - "3307:3306"
     volumes:
       - ./build/local/mysql/:/etc/mysql/conf.d/:ro
-      - mysql_data:/var/lib/mysql
+      - mysql_data_e2e:/var/lib/mysql
     env_file:
-      - .env
+      - .env.e2e
     networks:
       - node-nw
 
 volumes:
-  mysql_data: null
+  mysql_data_e2e: null
 
 networks:
   node-nw:

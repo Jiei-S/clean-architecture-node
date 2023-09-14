@@ -1,8 +1,8 @@
 import { Body, Controller, Get, Path, Post, Route, SuccessResponse, Tags } from "tsoa";
-import { inject, provideSingleton } from "../../../../middlewares/inversify/util";
+import { inject, provideSingleton } from "../../../middlewares/inversify/util";
 import { ProjectCreateParams, ProjectResponse } from "./project-model";
-import { IProjectUseCase } from "../../../../usecases/projects/project-interface";
-import { ProjectUsecase } from "../../../../usecases/projects/project-usecase";
+import { IProjectUseCase } from "../../../usecases/projects/project-interface";
+import { ProjectUsecase } from "../../../usecases/projects/project-usecase";
 
 @Route("projects")
 @Tags("Project")

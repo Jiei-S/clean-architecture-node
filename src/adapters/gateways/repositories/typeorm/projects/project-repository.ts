@@ -2,31 +2,23 @@ import { IProjectRepository } from "../../../../../domain/models/projects/projec
 import { Project } from "../../../../../domain/models/projects/project-entity";
 import { provideSingleton } from "../../../../../middlewares/inversify/util";
 import { ProjectMapper } from "./project-mapper";
-import { Repository, TypeORMError } from "typeorm";
+import { TypeORMError } from "typeorm";
 import dataSource from "../../../../../infrastructure/typeorm/connection";
 import { ApplicationError } from "../../../../../middlewares/error/error";
 
 @provideSingleton(ProjectRepository)
 export class ProjectRepository implements IProjectRepository {
-  private repository: Repository<ProjectMapper>;
-
-  constructor() {
-    this.repository = dataSource.getRepository(ProjectMapper);
-  }
+  private repository = dataSource.getRepository(ProjectMapper);
 
   async save(project: Project): Promise<Project> {
-    const result = await this.repository.save(
-      ProjectMapper.fromEntity(project)
-    );
+    const result = await this.repository.save(ProjectMapper.fromEntity(project));
     return result.toEntity();
   }
 
   async find(id: string): Promise<Project> {
-    const result = await this.repository
-      .findOneByOrFail({ id })
-      .catch((err: TypeORMError) => {
-        throw ApplicationError.fromORMError(err);
-      });
+    const result = await this.repository.findOneByOrFail({ id }).catch((err: TypeORMError) => {
+      throw ApplicationError.fromORMError(err);
+    });
     return result.toEntity();
   }
 }

@@ -1,4 +1,4 @@
-import { ProjectDTO } from "../../../../usecases/projects/project-dto";
+import { ProjectDTO } from "../../../usecases/projects/project-dto";
 
 export class ProjectCreateParams {
   name: string;
@@ -22,15 +22,7 @@ export class ProjectResponse {
   name: string;
   status: string;
 
-  constructor({
-    id,
-    name,
-    status,
-  }: {
-    id: string;
-    name: string;
-    status: string;
-  }) {
+  constructor({ id, name, status }: { id: string; name: string; status: string }) {
     this.id = id;
     this.name = name;
     this.status = status;
