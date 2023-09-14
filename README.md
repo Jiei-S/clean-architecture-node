@@ -160,7 +160,7 @@ Automatically run when you commit.
 
 ### E2E Test
 
-To run E2E test, you need to run the following commands or GitHub Actions Workflow.
+To run E2E test, you need to run the following commands.
 
 ```bash
 # e2e container up and migration run
