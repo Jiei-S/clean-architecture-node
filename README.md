@@ -2,26 +2,15 @@
 
 This is a boilerplate for clean architecture and Node REST projects.
 
-### Tech Stack
+## Technology Stack
 
-Application
-- Node.js
-- TypeScript
-- Express
+| Category              | Technology Stack                    |
+| --------------------- | ----------------------------------- |
+| Programming Languages | Node.js, TypeScript                                  |
+| Frameworks/Libraries  | Express, TypeORM, OpenAPI, tsoa|
+| Environment setup     | Docker                              |
+| CI     | Husky, ESLint, Prettier, Jest                              |
 
-Database
-- MySQL
-- TypeORM
-
-API
-- OpenAPI
-- tsoa
-
-CI
-- Husky
-- ESLint
-- Prettier
-- Jest
 
 
 # Architecture
@@ -73,7 +62,7 @@ CI
 ・
 ```
 
-For more details, see [Boilerplate Clean Architecture](https://github.com/Jiei-S/boilerplate-clean-architecture#readme).
+For more details, see [Boilerplate Clean Architecture](https://github.com/Jiei-S/boilerplate-clean-architecture-go#architecture).
 
 
 # Get Started
