@@ -1,4 +1,4 @@
-# boilerplate-clean-architecture-node
+# Clean Architecture Node
 
 This is a boilerplate for clean architecture and Node REST projects.
 
