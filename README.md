@@ -62,7 +62,7 @@ This is a boilerplate for clean architecture and Node REST projects.
 ・
 ```
 
-For more details, see [Boilerplate Clean Architecture](https://github.com/Jiei-S/boilerplate-clean-architecture-go#architecture).
+For more details, see [Qiita](https://qiita.com/Jiei-S/items/dbf06194f4858519bc61).
 
 
 # Get Started
