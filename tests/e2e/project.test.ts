@@ -22,13 +22,13 @@ describe("create", () => {
       .post("/projects")
       .send({
         name: "test",
-        status: "todo",
+        status: "active",
       })
       .then((result) => {
         expect(result.status).toBe(200);
         expect(result.body).toMatchObject({
           name: "test",
-          status: "todo",
+          status: "active",
         });
       });
   });

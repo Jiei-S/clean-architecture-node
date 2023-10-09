@@ -50,7 +50,7 @@ export function RegisterRoutes(app: Router) {
 
             async function ProjectController_createProject(request: any, response: any, next: any) {
             const args = {
-                    req: {"in":"request","name":"req","required":true,"dataType":"object"},
+                    _: {"in":"request","name":"_","required":true,"dataType":"object"},
                     params: {"in":"body","name":"params","required":true,"ref":"ProjectCreateParams"},
             };
 
@@ -82,7 +82,7 @@ export function RegisterRoutes(app: Router) {
 
             async function ProjectController_findProject(request: any, response: any, next: any) {
             const args = {
-                    req: {"in":"request","name":"req","required":true,"dataType":"object"},
+                    _: {"in":"request","name":"_","required":true,"dataType":"object"},
                     id: {"in":"path","name":"id","required":true,"dataType":"string"},
             };
 

@@ -1,3 +1,8 @@
+.PHONY: setup
+setup:
+	yarn install
+	cp .env.local .env
+
 .PHONY: dev
 dev:
 	docker compose down || true

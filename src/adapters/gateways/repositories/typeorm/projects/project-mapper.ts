@@ -4,19 +4,27 @@ import {
   PrimaryGeneratedColumn,
   CreateDateColumn,
   UpdateDateColumn,
+  BeforeInsert,
+  BeforeUpdate,
 } from "typeorm";
 import { Project } from "../../../../../domain/models/projects/project-entity";
-import { ProjectStatusVO } from "../../../../../domain/models/projects/project-vo";
+import { ProjectNameVO, ProjectStatusVO } from "../../../../../domain/models/projects/project-vo";
+import { MaxLength, validate, IsIn } from "class-validator";
+import { ApplicationError, ApplicationErrorCode } from "../../../../../middlewares/error/error";
 
 @Entity({ name: "projects" })
 export class ProjectMapper {
   @PrimaryGeneratedColumn("uuid")
   id: string;
 
+  @MaxLength(ProjectNameVO.MAX_LENGTH, {
+    message: "name is too long",
+  })
   @Column()
   name: string;
 
-  @Column({ default: 0 })
+  @IsIn(ProjectStatusVO.getIntValues())
+  @Column({ default: ProjectStatusVO.getDefaultIntValue() })
   status: number;
 
   @CreateDateColumn()
@@ -45,5 +53,17 @@ export class ProjectMapper {
     const m = new ProjectMapper(entity.name.value, entity.status.toInt());
     if (entity.id) m.id = entity.id;
     return m;
+  }
+
+  @BeforeInsert()
+  @BeforeUpdate()
+  async validate(): Promise<void> {
+    for (const error of await validate(this)) {
+      throw new ApplicationError({
+        message: error.toString(),
+        type: "invalidProject",
+        code: ApplicationErrorCode.UNPROCESSABLE_ENTITY,
+      });
+    }
   }
 }

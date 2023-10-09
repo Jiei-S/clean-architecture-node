@@ -1,9 +1,7 @@
 import { ApplicationError, ApplicationErrorCode } from "../../../middlewares/error/error";
 
-// Name
-const MAX_PROJECT_NAME_LENGTH = 50;
-
 export class ProjectNameVO {
+  static readonly MAX_LENGTH = 50;
   private readonly _value: string;
 
   constructor(value: string) {
@@ -16,7 +14,7 @@ export class ProjectNameVO {
   }
 
   private validate(value: string): boolean {
-    return value.length <= MAX_PROJECT_NAME_LENGTH;
+    return value.length <= ProjectNameVO.MAX_LENGTH;
   }
 
   newError(): ApplicationError {
@@ -28,56 +26,55 @@ export class ProjectNameVO {
   }
 }
 
-// Status
-const ProjectStatusTodo = "todo";
-const ProjectStatusRunning = "running";
-const ProjectStatusCompleted = "completed";
-
-type ProjectStatus = typeof ProjectStatusTodo | typeof ProjectStatusRunning | typeof ProjectStatusCompleted;
-
-const ProjectStatusMap: ReadonlyMap<ProjectStatus, number> = new Map([
-  [ProjectStatusTodo, 1],
-  [ProjectStatusRunning, 2],
-  [ProjectStatusCompleted, 3],
-]);
-
 export class ProjectStatusVO {
-  private readonly _value: ProjectStatus;
+  static readonly ACTIVE = "active";
+  static readonly INACTIVE = "inactive";
+  StatusType: typeof ProjectStatusVO.ACTIVE | typeof ProjectStatusVO.INACTIVE;
+  static readonly StatusMap: ReadonlyMap<ProjectStatusVO["StatusType"], number> = new Map([
+    [ProjectStatusVO.ACTIVE, 1],
+    [ProjectStatusVO.INACTIVE, 2],
+  ]);
+
+  private readonly _value: ProjectStatusVO["StatusType"];
 
   constructor(value: string) {
     if (!this.validate(value)) throw this.newError();
-    this._value = value as ProjectStatus;
+    this._value = value as ProjectStatusVO["StatusType"];
   }
 
-  get value(): ProjectStatus {
+  get value(): ProjectStatusVO["StatusType"] {
     return this._value;
   }
 
   private validate(value: string): boolean {
-    for (const [k] of ProjectStatusMap) {
+    for (const [k] of ProjectStatusVO.StatusMap) {
       if (k === value) return true;
     }
     return false;
   }
 
-  isTodo(): boolean {
-    return this._value === ProjectStatusTodo;
+  static getIntValues(): number[] {
+    return Array.from(ProjectStatusVO.StatusMap.values());
   }
 
-  isRunning(): boolean {
-    return this._value === ProjectStatusRunning;
+  static getDefaultIntValue(): number {
+    return ProjectStatusVO.StatusMap.get(ProjectStatusVO.ACTIVE) ?? 0;
   }
 
-  isCompleted(): boolean {
-    return this._value === ProjectStatusCompleted;
+  isActive(): boolean {
+    return this._value === ProjectStatusVO.ACTIVE;
+  }
+
+  isInActive(): boolean {
+    return this._value === ProjectStatusVO.INACTIVE;
   }
 
   toInt(): number {
-    return ProjectStatusMap.get(this._value) as number;
+    return ProjectStatusVO.StatusMap.get(this._value) as number;
   }
 
-  static fromInt(status: number): ProjectStatus {
-    for (const [k, v] of ProjectStatusMap) {
+  static fromInt(status: number): ProjectStatusVO["StatusType"] {
+    for (const [k, v] of ProjectStatusVO.StatusMap) {
       if (v === status) return k;
     }
     throw ProjectStatusVO.prototype.newError();

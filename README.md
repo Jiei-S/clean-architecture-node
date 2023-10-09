@@ -67,6 +67,15 @@ For more details, see [Qiita](https://qiita.com/Jiei-S/items/dbf06194f4858519bc6
 
 # Get Started
 
+## Setup
+```bash
+$ make setup
+```
+
+Then, You need to set environment variables in `.env` file.
+
+## Run
+
 Run the following command. Server will start on http://localhost:4000.
 
 ```bash
@@ -83,7 +92,7 @@ $ curl --location 'http://localhost:4000/projects' \
   --header 'Accept: application/json' \
   --data '{
     "name": "test",
-    "status": "todo"
+    "status": "active"
   }'
 ```
 
@@ -91,7 +100,7 @@ $ curl --location 'http://localhost:4000/projects' \
 {
   "id": "<ID>",
   "name": "test",
-  "status": "todo"
+  "status": "active"
 }
 ```
 
@@ -105,7 +114,7 @@ $ curl --location 'http://localhost:4000/projects/<ID>'
 {
   "id": "<ID>",
   "name": "test",
-  "status": "todo"
+  "status": "active"
 }
 ```
 
