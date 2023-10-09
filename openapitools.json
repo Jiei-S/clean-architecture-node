@@ -6,7 +6,7 @@
     "generators": {
       "v1.0": {
         "generatorName": "typescript-axios",
-        "output": "../boilerplate-clean-architecture-node/api/v1.0",
+        "output": "api/v1.0",
         "glob": "src/infrastructure/express/swagger.json",
         "enablePostProcessFile": true,
         "additionalProperties": {
