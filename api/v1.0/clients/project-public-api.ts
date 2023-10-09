@@ -21,25 +21,24 @@ import { DUMMY_BASE_URL, assertParamExists, setApiKeyToObject, setBasicAuthToObj
 // @ts-ignore
 import { BASE_PATH, COLLECTION_FORMATS, RequestArgs, BaseAPI, RequiredError } from '../base';
 // @ts-ignore
-import { ProjectCreateParams } from '../models';
-// @ts-ignore
 import { ProjectResponse } from '../models';
 /**
- * ProjectApi - axios parameter creator
+ * ProjectPublicApi - axios parameter creator
  * @export
  */
-export const ProjectApiAxiosParamCreator = function (configuration?: Configuration) {
+export const ProjectPublicApiAxiosParamCreator = function (configuration?: Configuration) {
     return {
         /**
          * 
-         * @param {ProjectCreateParams} projectCreateParams 
+         * @param {string} id 
          * @param {*} [options] Override http request option.
          * @throws {RequiredError}
          */
-        createProject: async (projectCreateParams: ProjectCreateParams, options: any = {}): Promise<RequestArgs> => {
-            // verify required parameter 'projectCreateParams' is not null or undefined
-            assertParamExists('createProject', 'projectCreateParams', projectCreateParams)
-            const localVarPath = `/projects`;
+        findProjectForPublic: async (id: string, options: any = {}): Promise<RequestArgs> => {
+            // verify required parameter 'id' is not null or undefined
+            assertParamExists('findProjectForPublic', 'id', id)
+            const localVarPath = `/public/projects/{id}`
+                .replace(`{${"id"}}`, encodeURIComponent(String(id)));
             // use dummy base URL string because the URL constructor only accepts absolute URLs.
             const localVarUrlObj = new URL(localVarPath, DUMMY_BASE_URL);
             let baseOptions;
@@ -47,18 +46,15 @@ export const ProjectApiAxiosParamCreator = function (configuration?: Configurati
                 baseOptions = configuration.baseOptions;
             }
 
-            const localVarRequestOptions = { method: 'POST', ...baseOptions, ...options};
+            const localVarRequestOptions = { method: 'GET', ...baseOptions, ...options};
             const localVarHeaderParameter = {} as any;
             const localVarQueryParameter = {} as any;
 
 
     
-            localVarHeaderParameter['Content-Type'] = 'application/json';
-
             setSearchParams(localVarUrlObj, localVarQueryParameter, options.query);
             let headersFromBaseOptions = baseOptions && baseOptions.headers ? baseOptions.headers : {};
             localVarRequestOptions.headers = {...localVarHeaderParameter, ...headersFromBaseOptions, ...options.headers};
-            localVarRequestOptions.data = serializeDataIfNeeded(projectCreateParams, localVarRequestOptions, configuration)
 
             return {
                 url: toPathString(localVarUrlObj),
@@ -67,15 +63,11 @@ export const ProjectApiAxiosParamCreator = function (configuration?: Configurati
         },
         /**
          * 
-         * @param {string} id 
          * @param {*} [options] Override http request option.
          * @throws {RequiredError}
          */
-        findProject: async (id: string, options: any = {}): Promise<RequestArgs> => {
-            // verify required parameter 'id' is not null or undefined
-            assertParamExists('findProject', 'id', id)
-            const localVarPath = `/projects/{id}`
-                .replace(`{${"id"}}`, encodeURIComponent(String(id)));
+        getProjectsForPublic: async (options: any = {}): Promise<RequestArgs> => {
+            const localVarPath = `/public/projects`;
             // use dummy base URL string because the URL constructor only accepts absolute URLs.
             const localVarUrlObj = new URL(localVarPath, DUMMY_BASE_URL);
             let baseOptions;
@@ -102,117 +94,100 @@ export const ProjectApiAxiosParamCreator = function (configuration?: Configurati
 };
 
 /**
- * ProjectApi - functional programming interface
+ * ProjectPublicApi - functional programming interface
  * @export
  */
-export const ProjectApiFp = function(configuration?: Configuration) {
-    const localVarAxiosParamCreator = ProjectApiAxiosParamCreator(configuration)
+export const ProjectPublicApiFp = function(configuration?: Configuration) {
+    const localVarAxiosParamCreator = ProjectPublicApiAxiosParamCreator(configuration)
     return {
-        /**
-         * 
-         * @param {ProjectCreateParams} projectCreateParams 
-         * @param {*} [options] Override http request option.
-         * @throws {RequiredError}
-         */
-        async createProject(projectCreateParams: ProjectCreateParams, options?: any): Promise<(axios?: AxiosInstance, basePath?: string) => AxiosPromise<ProjectResponse>> {
-            const localVarAxiosArgs = await localVarAxiosParamCreator.createProject(projectCreateParams, options);
-            return createRequestFunction(localVarAxiosArgs, globalAxios, BASE_PATH, configuration);
-        },
         /**
          * 
          * @param {string} id 
          * @param {*} [options] Override http request option.
          * @throws {RequiredError}
          */
-        async findProject(id: string, options?: any): Promise<(axios?: AxiosInstance, basePath?: string) => AxiosPromise<ProjectResponse>> {
-            const localVarAxiosArgs = await localVarAxiosParamCreator.findProject(id, options);
+        async findProjectForPublic(id: string, options?: any): Promise<(axios?: AxiosInstance, basePath?: string) => AxiosPromise<ProjectResponse>> {
+            const localVarAxiosArgs = await localVarAxiosParamCreator.findProjectForPublic(id, options);
+            return createRequestFunction(localVarAxiosArgs, globalAxios, BASE_PATH, configuration);
+        },
+        /**
+         * 
+         * @param {*} [options] Override http request option.
+         * @throws {RequiredError}
+         */
+        async getProjectsForPublic(options?: any): Promise<(axios?: AxiosInstance, basePath?: string) => AxiosPromise<Array<ProjectResponse>>> {
+            const localVarAxiosArgs = await localVarAxiosParamCreator.getProjectsForPublic(options);
             return createRequestFunction(localVarAxiosArgs, globalAxios, BASE_PATH, configuration);
         },
     }
 };
 
 /**
- * ProjectApi - factory interface
+ * ProjectPublicApi - factory interface
  * @export
  */
-export const ProjectApiFactory = function (configuration?: Configuration, basePath?: string, axios?: AxiosInstance) {
-    const localVarFp = ProjectApiFp(configuration)
+export const ProjectPublicApiFactory = function (configuration?: Configuration, basePath?: string, axios?: AxiosInstance) {
+    const localVarFp = ProjectPublicApiFp(configuration)
     return {
-        /**
-         * 
-         * @param {ProjectCreateParams} projectCreateParams 
-         * @param {*} [options] Override http request option.
-         * @throws {RequiredError}
-         */
-        createProject(projectCreateParams: ProjectCreateParams, options?: any): AxiosPromise<ProjectResponse> {
-            return localVarFp.createProject(projectCreateParams, options).then((request) => request(axios, basePath));
-        },
         /**
          * 
          * @param {string} id 
          * @param {*} [options] Override http request option.
          * @throws {RequiredError}
          */
-        findProject(id: string, options?: any): AxiosPromise<ProjectResponse> {
-            return localVarFp.findProject(id, options).then((request) => request(axios, basePath));
+        findProjectForPublic(id: string, options?: any): AxiosPromise<ProjectResponse> {
+            return localVarFp.findProjectForPublic(id, options).then((request) => request(axios, basePath));
+        },
+        /**
+         * 
+         * @param {*} [options] Override http request option.
+         * @throws {RequiredError}
+         */
+        getProjectsForPublic(options?: any): AxiosPromise<Array<ProjectResponse>> {
+            return localVarFp.getProjectsForPublic(options).then((request) => request(axios, basePath));
         },
     };
 };
 
 /**
- * Request parameters for createProject operation in ProjectApi.
+ * Request parameters for findProjectForPublic operation in ProjectPublicApi.
  * @export
- * @interface ProjectApiCreateProjectRequest
+ * @interface ProjectPublicApiFindProjectForPublicRequest
  */
-export interface ProjectApiCreateProjectRequest {
-    /**
-     * 
-     * @type {ProjectCreateParams}
-     * @memberof ProjectApiCreateProject
-     */
-    readonly projectCreateParams: ProjectCreateParams
-}
-
-/**
- * Request parameters for findProject operation in ProjectApi.
- * @export
- * @interface ProjectApiFindProjectRequest
- */
-export interface ProjectApiFindProjectRequest {
+export interface ProjectPublicApiFindProjectForPublicRequest {
     /**
      * 
      * @type {string}
-     * @memberof ProjectApiFindProject
+     * @memberof ProjectPublicApiFindProjectForPublic
      */
     readonly id: string
 }
 
 /**
- * ProjectApi - object-oriented interface
+ * ProjectPublicApi - object-oriented interface
  * @export
- * @class ProjectApi
+ * @class ProjectPublicApi
  * @extends {BaseAPI}
  */
-export class ProjectApi extends BaseAPI {
+export class ProjectPublicApi extends BaseAPI {
     /**
      * 
-     * @param {ProjectApiCreateProjectRequest} requestParameters Request parameters.
+     * @param {ProjectPublicApiFindProjectForPublicRequest} requestParameters Request parameters.
      * @param {*} [options] Override http request option.
      * @throws {RequiredError}
-     * @memberof ProjectApi
+     * @memberof ProjectPublicApi
      */
-    public createProject(requestParameters: ProjectApiCreateProjectRequest, options?: any) {
-        return ProjectApiFp(this.configuration).createProject(requestParameters.projectCreateParams, options).then((request) => request(this.axios, this.basePath));
+    public findProjectForPublic(requestParameters: ProjectPublicApiFindProjectForPublicRequest, options?: any) {
+        return ProjectPublicApiFp(this.configuration).findProjectForPublic(requestParameters.id, options).then((request) => request(this.axios, this.basePath));
     }
 
     /**
      * 
-     * @param {ProjectApiFindProjectRequest} requestParameters Request parameters.
      * @param {*} [options] Override http request option.
      * @throws {RequiredError}
-     * @memberof ProjectApi
+     * @memberof ProjectPublicApi
      */
-    public findProject(requestParameters: ProjectApiFindProjectRequest, options?: any) {
-        return ProjectApiFp(this.configuration).findProject(requestParameters.id, options).then((request) => request(this.axios, this.basePath));
+    public getProjectsForPublic(options?: any) {
+        return ProjectPublicApiFp(this.configuration).getProjectsForPublic(options).then((request) => request(this.axios, this.basePath));
     }
 }

@@ -3,7 +3,8 @@
 .openapi-generator-ignore
 api.ts
 base.ts
-clients/project-api.ts
+clients/project-internal-api.ts
+clients/project-public-api.ts
 common.ts
 configuration.ts
 git_push.sh

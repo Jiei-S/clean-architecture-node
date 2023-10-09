@@ -51,7 +51,7 @@
 	},
 	"openapi": "3.0.0",
 	"paths": {
-		"/projects": {
+		"/internal/projects": {
 			"post": {
 				"operationId": "CreateProject",
 				"responses": {
@@ -67,7 +67,7 @@
 					}
 				},
 				"tags": [
-					"Project"
+					"project-internal"
 				],
 				"security": [
 					{
@@ -85,9 +85,36 @@
 						}
 					}
 				}
+			},
+			"get": {
+				"operationId": "GetProjects",
+				"responses": {
+					"200": {
+						"description": "Return projects",
+						"content": {
+							"application/json": {
+								"schema": {
+									"items": {
+										"$ref": "#/components/schemas/ProjectResponse"
+									},
+									"type": "array"
+								}
+							}
+						}
+					}
+				},
+				"tags": [
+					"project-internal"
+				],
+				"security": [
+					{
+						"AUTH0_USER": []
+					}
+				],
+				"parameters": []
 			}
 		},
-		"/projects/{id}": {
+		"/internal/projects/{id}": {
 			"get": {
 				"operationId": "FindProject",
 				"responses": {
@@ -103,7 +130,7 @@
 					}
 				},
 				"tags": [
-					"Project"
+					"project-internal"
 				],
 				"security": [
 					{
@@ -120,6 +147,70 @@
 						}
 					}
 				]
+			}
+		},
+		"/public/projects/{id}": {
+			"get": {
+				"operationId": "FindProjectForPublic",
+				"responses": {
+					"200": {
+						"description": "Return a project",
+						"content": {
+							"application/json": {
+								"schema": {
+									"$ref": "#/components/schemas/ProjectResponse"
+								}
+							}
+						}
+					}
+				},
+				"tags": [
+					"project-public"
+				],
+				"security": [
+					{
+						"API_KEY": []
+					}
+				],
+				"parameters": [
+					{
+						"in": "path",
+						"name": "id",
+						"required": true,
+						"schema": {
+							"type": "string"
+						}
+					}
+				]
+			}
+		},
+		"/public/projects": {
+			"get": {
+				"operationId": "GetProjectsForPublic",
+				"responses": {
+					"200": {
+						"description": "Return projects",
+						"content": {
+							"application/json": {
+								"schema": {
+									"items": {
+										"$ref": "#/components/schemas/ProjectResponse"
+									},
+									"type": "array"
+								}
+							}
+						}
+					}
+				},
+				"tags": [
+					"project-public"
+				],
+				"security": [
+					{
+						"API_KEY": []
+					}
+				],
+				"parameters": []
 			}
 		}
 	},

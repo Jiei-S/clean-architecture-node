@@ -6,18 +6,19 @@ import { IProjectUseCase } from "./project-interface";
 
 @provideSingleton(ProjectUsecase)
 export class ProjectUsecase implements IProjectUseCase {
-  constructor(
-    @inject(ProjectRepository) private projectRepository: IProjectRepository
-  ) {}
+  constructor(@inject(ProjectRepository) private projectRepository: IProjectRepository) {}
 
   async createProject(dto: ProjectDTO): Promise<ProjectDTO> {
-    return ProjectDTO.fromEntity(
-      await this.projectRepository.save(dto.toEntity())
-    );
+    return ProjectDTO.fromEntity(await this.projectRepository.save(dto.toEntity()));
   }
 
   async findProject(id: string): Promise<ProjectDTO> {
-    const project = await this.projectRepository.find(id);
-    return ProjectDTO.fromEntity(project);
+    const result = await this.projectRepository.find(id);
+    return ProjectDTO.fromEntity(result);
+  }
+
+  async getProjects(): Promise<ProjectDTO[]> {
+    const result = await this.projectRepository.get();
+    return result.map((project) => ProjectDTO.fromEntity(project));
   }
 }

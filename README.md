@@ -87,7 +87,7 @@ $ make dev
 ## Create
 
 ```bash
-$ curl --location 'http://localhost:4000/projects' \
+$ curl --location 'http://localhost:4000/internal/projects' \
   --header 'Content-Type: application/json' \
   --header 'Accept: application/json' \
   --data '{
@@ -107,7 +107,7 @@ $ curl --location 'http://localhost:4000/projects' \
 ## Find
 
 ```bash
-$ curl --location 'http://localhost:4000/projects/<ID>'
+$ curl --location 'http://localhost:4000/internal/projects/<ID>'
 ```
 
 ```json

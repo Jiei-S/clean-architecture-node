@@ -4,6 +4,8 @@
 import { Controller, ValidationService, FieldErrors, ValidateError, TsoaRoute, HttpStatusCodeLiteral, TsoaResponse, fetchMiddlewares } from '@tsoa/runtime';
 // WARNING: This file was auto-generated with tsoa. Please do not modify it. Re-run tsoa to re-generate this file: https://github.com/lukeautry/tsoa
 import { ProjectController } from './../../adapters/controllers/projects/project-controller';
+// WARNING: This file was auto-generated with tsoa. Please do not modify it. Re-run tsoa to re-generate this file: https://github.com/lukeautry/tsoa
+import { PublicProjectController } from './../../adapters/controllers/projects/public-project-controller';
 import { expressAuthentication } from './authentication';
 // @ts-ignore - no great way to install types from subpackage
 const promiseAny = require('promise.any');
@@ -43,7 +45,7 @@ export function RegisterRoutes(app: Router) {
     //  NOTE: If you do not see routes for all of your controllers in this file, then you might not have informed tsoa of where to look
     //      Please look into the "controllerPathGlobs" config option described in the readme: https://github.com/lukeautry/tsoa
     // ###########################################################################################################
-        app.post('/projects',
+        app.post('/internal/projects',
             authenticateMiddleware([{"AUTH0_USER":[]}]),
             ...(fetchMiddlewares<RequestHandler>(ProjectController)),
             ...(fetchMiddlewares<RequestHandler>(ProjectController.prototype.createProject)),
@@ -75,7 +77,7 @@ export function RegisterRoutes(app: Router) {
             }
         });
         // WARNING: This file was auto-generated with tsoa. Please do not modify it. Re-run tsoa to re-generate this file: https://github.com/lukeautry/tsoa
-        app.get('/projects/:id',
+        app.get('/internal/projects/:id',
             authenticateMiddleware([{"AUTH0_USER":[]}]),
             ...(fetchMiddlewares<RequestHandler>(ProjectController)),
             ...(fetchMiddlewares<RequestHandler>(ProjectController.prototype.findProject)),
@@ -101,6 +103,98 @@ export function RegisterRoutes(app: Router) {
 
 
               const promise = controller.findProject.apply(controller, validatedArgs as any);
+              promiseHandler(controller, promise, response, 200, next);
+            } catch (err) {
+                return next(err);
+            }
+        });
+        // WARNING: This file was auto-generated with tsoa. Please do not modify it. Re-run tsoa to re-generate this file: https://github.com/lukeautry/tsoa
+        app.get('/internal/projects',
+            authenticateMiddleware([{"AUTH0_USER":[]}]),
+            ...(fetchMiddlewares<RequestHandler>(ProjectController)),
+            ...(fetchMiddlewares<RequestHandler>(ProjectController.prototype.getProjects)),
+
+            async function ProjectController_getProjects(request: any, response: any, next: any) {
+            const args = {
+            };
+
+            // WARNING: This file was auto-generated with tsoa. Please do not modify it. Re-run tsoa to re-generate this file: https://github.com/lukeautry/tsoa
+
+            let validatedArgs: any[] = [];
+            try {
+                validatedArgs = getValidatedArgs(args, request, response);
+
+                const container: IocContainer = typeof iocContainer === 'function' ? (iocContainer as IocContainerFactory)(request) : iocContainer;
+
+                const controller: any = await container.get<ProjectController>(ProjectController);
+                if (typeof controller['setStatus'] === 'function') {
+                controller.setStatus(undefined);
+                }
+
+
+              const promise = controller.getProjects.apply(controller, validatedArgs as any);
+              promiseHandler(controller, promise, response, 200, next);
+            } catch (err) {
+                return next(err);
+            }
+        });
+        // WARNING: This file was auto-generated with tsoa. Please do not modify it. Re-run tsoa to re-generate this file: https://github.com/lukeautry/tsoa
+        app.get('/public/projects/:id',
+            authenticateMiddleware([{"API_KEY":[]}]),
+            ...(fetchMiddlewares<RequestHandler>(PublicProjectController)),
+            ...(fetchMiddlewares<RequestHandler>(PublicProjectController.prototype.findProjectForPublic)),
+
+            async function PublicProjectController_findProjectForPublic(request: any, response: any, next: any) {
+            const args = {
+                    _: {"in":"request","name":"_","required":true,"dataType":"object"},
+                    id: {"in":"path","name":"id","required":true,"dataType":"string"},
+            };
+
+            // WARNING: This file was auto-generated with tsoa. Please do not modify it. Re-run tsoa to re-generate this file: https://github.com/lukeautry/tsoa
+
+            let validatedArgs: any[] = [];
+            try {
+                validatedArgs = getValidatedArgs(args, request, response);
+
+                const container: IocContainer = typeof iocContainer === 'function' ? (iocContainer as IocContainerFactory)(request) : iocContainer;
+
+                const controller: any = await container.get<PublicProjectController>(PublicProjectController);
+                if (typeof controller['setStatus'] === 'function') {
+                controller.setStatus(undefined);
+                }
+
+
+              const promise = controller.findProjectForPublic.apply(controller, validatedArgs as any);
+              promiseHandler(controller, promise, response, 200, next);
+            } catch (err) {
+                return next(err);
+            }
+        });
+        // WARNING: This file was auto-generated with tsoa. Please do not modify it. Re-run tsoa to re-generate this file: https://github.com/lukeautry/tsoa
+        app.get('/public/projects',
+            authenticateMiddleware([{"API_KEY":[]}]),
+            ...(fetchMiddlewares<RequestHandler>(PublicProjectController)),
+            ...(fetchMiddlewares<RequestHandler>(PublicProjectController.prototype.getProjectsForPublic)),
+
+            async function PublicProjectController_getProjectsForPublic(request: any, response: any, next: any) {
+            const args = {
+            };
+
+            // WARNING: This file was auto-generated with tsoa. Please do not modify it. Re-run tsoa to re-generate this file: https://github.com/lukeautry/tsoa
+
+            let validatedArgs: any[] = [];
+            try {
+                validatedArgs = getValidatedArgs(args, request, response);
+
+                const container: IocContainer = typeof iocContainer === 'function' ? (iocContainer as IocContainerFactory)(request) : iocContainer;
+
+                const controller: any = await container.get<PublicProjectController>(PublicProjectController);
+                if (typeof controller['setStatus'] === 'function') {
+                controller.setStatus(undefined);
+                }
+
+
+              const promise = controller.getProjectsForPublic.apply(controller, validatedArgs as any);
               promiseHandler(controller, promise, response, 200, next);
             } catch (err) {
                 return next(err);

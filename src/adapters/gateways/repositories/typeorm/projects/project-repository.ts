@@ -21,4 +21,9 @@ export class ProjectRepository implements IProjectRepository {
     });
     return result.toEntity();
   }
+
+  async get(): Promise<Project[]> {
+    const result = await this.repository.find();
+    return result.map((project) => project.toEntity());
+  }
 }
