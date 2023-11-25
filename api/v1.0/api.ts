@@ -14,6 +14,5 @@
 
 
 
-export * from './clients/project-internal-api';
-export * from './clients/project-public-api';
+export * from './clients/project-api';
 

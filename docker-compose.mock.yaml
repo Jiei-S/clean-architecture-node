@@ -1,0 +1,16 @@
+version: "3.8"
+services:
+  api-mock:
+    image: stoplight/prism:5
+    platform: linux/amd64
+    volumes:
+      - ./src/infrastructure/express/swagger.json:/usr/src/prism/packages/cli/swagger.json
+    command: ["mock", "-h", "0.0.0.0", "-p", "4002", "swagger.json"]
+    ports:
+      - "4002:4002"
+    networks:
+      - node-nw
+
+networks:
+  node-nw:
+    external: true

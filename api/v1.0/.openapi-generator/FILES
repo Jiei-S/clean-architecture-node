@@ -1,10 +1,8 @@
 .gitignore
 .npmignore
-.openapi-generator-ignore
 api.ts
 base.ts
-clients/project-internal-api.ts
-clients/project-public-api.ts
+clients/project-api.ts
 common.ts
 configuration.ts
 git_push.sh

@@ -36,3 +36,9 @@ export class ProjectResponse {
     });
   }
 }
+
+export const ExampleProjectResponse: ProjectResponse = {
+  id: "52907745-7672-470e-a803-a2f8feb52944",
+  name: "Project1",
+  status: "active",
+};

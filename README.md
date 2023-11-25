@@ -98,6 +98,13 @@ $ make migration-revert
 
 Migration will be generated in `src/infrastructure/typeorm/migrations/**`.
 
+## Mock
+
+You need to run the following command to use mock server.
+
+```bash
+$ make mock
+```
 
 ## Test
 
