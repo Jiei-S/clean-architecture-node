@@ -25,10 +25,10 @@ import { ProjectCreateParams } from '../models';
 // @ts-ignore
 import { ProjectResponse } from '../models';
 /**
- * ProjectInternalApi - axios parameter creator
+ * ProjectApi - axios parameter creator
  * @export
  */
-export const ProjectInternalApiAxiosParamCreator = function (configuration?: Configuration) {
+export const ProjectApiAxiosParamCreator = function (configuration?: Configuration) {
     return {
         /**
          * 
@@ -131,11 +131,11 @@ export const ProjectInternalApiAxiosParamCreator = function (configuration?: Con
 };
 
 /**
- * ProjectInternalApi - functional programming interface
+ * ProjectApi - functional programming interface
  * @export
  */
-export const ProjectInternalApiFp = function(configuration?: Configuration) {
-    const localVarAxiosParamCreator = ProjectInternalApiAxiosParamCreator(configuration)
+export const ProjectApiFp = function(configuration?: Configuration) {
+    const localVarAxiosParamCreator = ProjectApiAxiosParamCreator(configuration)
     return {
         /**
          * 
@@ -170,11 +170,11 @@ export const ProjectInternalApiFp = function(configuration?: Configuration) {
 };
 
 /**
- * ProjectInternalApi - factory interface
+ * ProjectApi - factory interface
  * @export
  */
-export const ProjectInternalApiFactory = function (configuration?: Configuration, basePath?: string, axios?: AxiosInstance) {
-    const localVarFp = ProjectInternalApiFp(configuration)
+export const ProjectApiFactory = function (configuration?: Configuration, basePath?: string, axios?: AxiosInstance) {
+    const localVarFp = ProjectApiFp(configuration)
     return {
         /**
          * 
@@ -206,69 +206,69 @@ export const ProjectInternalApiFactory = function (configuration?: Configuration
 };
 
 /**
- * Request parameters for createProject operation in ProjectInternalApi.
+ * Request parameters for createProject operation in ProjectApi.
  * @export
- * @interface ProjectInternalApiCreateProjectRequest
+ * @interface ProjectApiCreateProjectRequest
  */
-export interface ProjectInternalApiCreateProjectRequest {
+export interface ProjectApiCreateProjectRequest {
     /**
      * 
      * @type {ProjectCreateParams}
-     * @memberof ProjectInternalApiCreateProject
+     * @memberof ProjectApiCreateProject
      */
     readonly projectCreateParams: ProjectCreateParams
 }
 
 /**
- * Request parameters for findProject operation in ProjectInternalApi.
+ * Request parameters for findProject operation in ProjectApi.
  * @export
- * @interface ProjectInternalApiFindProjectRequest
+ * @interface ProjectApiFindProjectRequest
  */
-export interface ProjectInternalApiFindProjectRequest {
+export interface ProjectApiFindProjectRequest {
     /**
      * 
      * @type {string}
-     * @memberof ProjectInternalApiFindProject
+     * @memberof ProjectApiFindProject
      */
     readonly id: string
 }
 
 /**
- * ProjectInternalApi - object-oriented interface
+ * ProjectApi - object-oriented interface
  * @export
- * @class ProjectInternalApi
+ * @class ProjectApi
  * @extends {BaseAPI}
  */
-export class ProjectInternalApi extends BaseAPI {
+export class ProjectApi extends BaseAPI {
     /**
      * 
-     * @param {ProjectInternalApiCreateProjectRequest} requestParameters Request parameters.
+     * @param {ProjectApiCreateProjectRequest} requestParameters Request parameters.
      * @param {*} [options] Override http request option.
      * @throws {RequiredError}
-     * @memberof ProjectInternalApi
+     * @memberof ProjectApi
      */
-    public createProject(requestParameters: ProjectInternalApiCreateProjectRequest, options?: any) {
-        return ProjectInternalApiFp(this.configuration).createProject(requestParameters.projectCreateParams, options).then((request) => request(this.axios, this.basePath));
+    public createProject(requestParameters: ProjectApiCreateProjectRequest, options?: any) {
+        return ProjectApiFp(this.configuration).createProject(requestParameters.projectCreateParams, options).then((request) => request(this.axios, this.basePath));
     }
 
     /**
      * 
-     * @param {ProjectInternalApiFindProjectRequest} requestParameters Request parameters.
+     * @param {ProjectApiFindProjectRequest} requestParameters Request parameters.
      * @param {*} [options] Override http request option.
      * @throws {RequiredError}
-     * @memberof ProjectInternalApi
+     * @memberof ProjectApi
      */
-    public findProject(requestParameters: ProjectInternalApiFindProjectRequest, options?: any) {
-        return ProjectInternalApiFp(this.configuration).findProject(requestParameters.id, options).then((request) => request(this.axios, this.basePath));
+    public findProject(requestParameters: ProjectApiFindProjectRequest, options?: any) {
+        return ProjectApiFp(this.configuration).findProject(requestParameters.id, options).then((request) => request(this.axios, this.basePath));
     }
 
     /**
      * 
      * @param {*} [options] Override http request option.
      * @throws {RequiredError}
-     * @memberof ProjectInternalApi
+     * @memberof ProjectApi
      */
     public getProjects(options?: any) {
-        return ProjectInternalApiFp(this.configuration).getProjects(options).then((request) => request(this.axios, this.basePath));
+        return ProjectApiFp(this.configuration).getProjects(options).then((request) => request(this.axios, this.basePath));
     }
 }

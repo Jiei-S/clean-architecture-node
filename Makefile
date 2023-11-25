@@ -13,6 +13,12 @@ dev:
 dev-down:
 	docker compose down -v || true
 
+.PHONY: mock
+mock:
+	docker compose down || true
+	docker network create node-nw || true
+	docker compose -f docker-compose.mock.yaml up --build
+
 .PHONY: api-gen
 api-gen:
 	yarn tsoa
