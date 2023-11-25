@@ -4,7 +4,10 @@ This is a boilerplate for clean architecture and Node REST projects.
 
 # Architecture
 
-See [Qiita](https://qiita.com/Jiei-S/items/dbf06194f4858519bc61).
+![Architecture](architecture.drawio.png)
+
+For more information, please refer to the following article.
+[Qiita](https://qiita.com/Jiei-S/items/dbf06194f4858519bc61).
 
 
 ## Technology Stack
