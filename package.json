@@ -6,6 +6,7 @@
   "license": "ISC",
   "scripts": {
     "dev": "ts-node-dev --inspect=0.0.0.0:9229 --poll --respawn --transpile-only --max-old-space-size=20480 src/index.ts",
+    "build": "tsc",
     "tsoa": "ts-node-dev tsoaconfig.ts",
     "openapi": "openapi-generator-cli generate",
     "typeorm": "typeorm-ts-node-commonjs -d ./src/infrastructure/typeorm/connection.ts",
