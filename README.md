@@ -2,68 +2,14 @@
 
 This is a boilerplate for clean architecture and Node REST projects.
 
-## Technology Stack
-
-| Category              | Technology Stack                    |
-| --------------------- | ----------------------------------- |
-| Programming Languages | Node.js, TypeScript                                  |
-| Frameworks/Libraries  | Express, TypeORM, OpenAPI, tsoa|
-| Environment setup     | Docker                              |
-| CI     | Husky, ESLint, Prettier, Jest                              |
-
-
-
 # Architecture
 
-## Directories
-```bash
-.
-├── api # API Client
-│   └── v1.0
-│       ├── clients
-│       │   └── <CONTEXT>-api.ts
-│       └── models
-│           ├── <CONTEXT>-create-params.ts
-│           └── <CONTEXT>-response.ts
-├── src
-│   ├── adapters
-│   │   ├── controllers
-│   │   │   └── <CONTEXT>
-│   │   │       ├── <CONTEXT>-model.ts
-│   │   │       └── <CONTEXT>-controller.ts
-│   │   └── gateways
-│   │       └── repositories
-│   │           └── typeorm
-│   │               └── <CONTEXT>
-│   │                   ├── <CONTEXT>-mapper.ts
-│   │                   └── <CONTEXT>-repository.ts
-│   ├── domain
-│   │   └── models
-│   │       └── <CONTEXT>
-│   │           ├── <CONTEXT>-entity.ts
-│   │           ├── <CONTEXT>-repository-interface.ts
-│   │           └── <CONTEXT>-vo.ts
-│   ├── index.ts # entrypoint
-│   ├── infrastructure
-│   │   ├── express
-│   │   │   ├── app.ts
-│   │   │   └── xxxxx
-│   │   └── typeorm
-│   │       └── xxxxx
-│   ├── middlewares
-│   │   └── xxxxx
-│   └── usecases
-│       └── <CONTEXT>
-│           ├── <CONTEXT>-dto.ts
-│           ├── <CONTEXT>-interface.ts
-│           └── <CONTEXT>-usecase.ts
-├── tests
-│   └── e2e
-・
-```
+See [Qiita](https://qiita.com/Jiei-S/items/dbf06194f4858519bc61).
 
-For more details, see [Qiita](https://qiita.com/Jiei-S/items/dbf06194f4858519bc61).
 
+## Technology Stack
+
+![Technology Stack](technology-stack.drawio.png)
 
 # Get Started
 
