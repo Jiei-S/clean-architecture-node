@@ -36,10 +36,11 @@ $ make dev
 ## Create
 
 ```bash
-$ curl --location 'http://localhost:4000/internal/projects' \
+$ curl --location 'http://localhost:4000/projects' \
   --header 'Content-Type: application/json' \
   --header 'Accept: application/json' \
   --data '{
+    "id": "",
     "name": "test",
     "status": "active"
   }'
@@ -56,7 +57,7 @@ $ curl --location 'http://localhost:4000/internal/projects' \
 ## Find
 
 ```bash
-$ curl --location 'http://localhost:4000/internal/projects/<ID>'
+$ curl --location 'http://localhost:4000/projects/<ID>'
 ```
 
 ```json

@@ -7,13 +7,15 @@ export class ProjectDTO {
   createdAt: Date;
   updatedAt: Date;
 
-  constructor({ name, status }: { name: string; status: string }) {
-    this.name = name;
-    this.status = status;
+  constructor(params: { id: string; name: string; status: string }) {
+    this.id = params.id;
+    this.name = params.name;
+    this.status = params.status;
   }
 
   toEntity(): Project {
     return new Project({
+      id: this.id,
       name: this.name,
       status: this.status,
     });
@@ -21,10 +23,10 @@ export class ProjectDTO {
 
   static fromEntity(entity: Project): ProjectDTO {
     const dto = new ProjectDTO({
+      id: entity.id,
       name: entity.name.value,
       status: entity.status.value.toString(),
     });
-    dto.id = entity.id;
     dto.createdAt = entity.createdAt;
     dto.updatedAt = entity.updatedAt;
     return dto;
