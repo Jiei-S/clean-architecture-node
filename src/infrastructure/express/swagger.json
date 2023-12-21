@@ -26,8 +26,11 @@
 				"type": "object",
 				"additionalProperties": false
 			},
-			"ProjectCreateParams": {
+			"ProjectParams": {
 				"properties": {
+					"id": {
+						"type": "string"
+					},
 					"name": {
 						"type": "string"
 					},
@@ -36,6 +39,7 @@
 					}
 				},
 				"required": [
+					"id",
 					"name",
 					"status"
 				],
@@ -89,7 +93,7 @@
 					"content": {
 						"application/json": {
 							"schema": {
-								"$ref": "#/components/schemas/ProjectCreateParams"
+								"$ref": "#/components/schemas/ProjectParams"
 							}
 						}
 					}
@@ -135,6 +139,49 @@
 			}
 		},
 		"/projects/{id}": {
+			"put": {
+				"operationId": "UpdateProject",
+				"responses": {
+					"200": {
+						"description": "Return a project",
+						"content": {
+							"application/json": {
+								"schema": {
+									"$ref": "#/components/schemas/ProjectResponse"
+								},
+								"examples": {
+									"Example 1": {
+										"value": {
+											"id": "52907745-7672-470e-a803-a2f8feb52944",
+											"name": "Project1",
+											"status": "active"
+										}
+									}
+								}
+							}
+						}
+					}
+				},
+				"tags": [
+					"Project"
+				],
+				"security": [
+					{
+						"AUTH0_USER": []
+					}
+				],
+				"parameters": [],
+				"requestBody": {
+					"required": true,
+					"content": {
+						"application/json": {
+							"schema": {
+								"$ref": "#/components/schemas/ProjectParams"
+							}
+						}
+					}
+				}
+			},
 			"get": {
 				"operationId": "FindProject",
 				"responses": {

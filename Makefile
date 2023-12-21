@@ -22,7 +22,21 @@ mock:
 .PHONY: api-gen
 api-gen:
 	yarn tsoa
-	yarn openapi
+	docker run \
+		--rm \
+		-v ${PWD}/src/infrastructure/express:/input \
+		-v ${PWD}/api/v1.0:/output \
+		openapitools/openapi-generator-cli \
+		generate \
+		-g typescript-axios \
+		-i /input/swagger.json \
+		-o /output \
+		--additional-properties enumPropertyNaming=UPPERCASE \
+		--additional-properties useSingleRequestParameter=true \
+		--additional-properties apiPackage=clients \
+		--additional-properties modelPackage=models \
+		--additional-properties withSeparateModelsAndApi=true \
+		--skip-validate-spec
 
 .PHONY: migration-gen
 migration-gen:

@@ -12,6 +12,10 @@ export class ProjectUsecase implements IProjectUseCase {
     return ProjectDTO.fromEntity(await this.projectRepository.save(dto.toEntity()));
   }
 
+  async updateProject(dto: ProjectDTO): Promise<ProjectDTO> {
+    return ProjectDTO.fromEntity(await this.projectRepository.save(dto.toEntity()));
+  }
+
   async findProject(id: string): Promise<ProjectDTO> {
     const result = await this.projectRepository.find(id);
     return ProjectDTO.fromEntity(result);

@@ -1,5 +1,6 @@
 .gitignore
 .npmignore
+.openapi-generator-ignore
 api.ts
 base.ts
 clients/project-api.ts
@@ -8,5 +9,5 @@ configuration.ts
 git_push.sh
 index.ts
 models/index.ts
-models/project-create-params.ts
+models/project-params.ts
 models/project-response.ts

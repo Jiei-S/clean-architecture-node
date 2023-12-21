@@ -1,2 +1,2 @@
-export * from './project-create-params';
+export * from './project-params';
 export * from './project-response';

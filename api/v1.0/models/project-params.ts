@@ -17,21 +17,26 @@
 /**
  * 
  * @export
- * @interface ProjectCreateParams
+ * @interface ProjectParams
  */
-export interface ProjectCreateParams {
+export interface ProjectParams {
     /**
      * 
      * @type {string}
-     * @memberof ProjectCreateParams
+     * @memberof ProjectParams
      */
-    name: string;
+    'id': string;
     /**
      * 
      * @type {string}
-     * @memberof ProjectCreateParams
+     * @memberof ProjectParams
      */
-    status: string;
+    'name': string;
+    /**
+     * 
+     * @type {string}
+     * @memberof ProjectParams
+     */
+    'status': string;
 }
-
 

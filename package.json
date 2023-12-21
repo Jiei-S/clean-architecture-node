@@ -8,7 +8,6 @@
     "dev": "ts-node-dev --inspect=0.0.0.0:9229 --poll --respawn --transpile-only --max-old-space-size=20480 src/index.ts",
     "build": "tsc",
     "tsoa": "ts-node-dev tsoaconfig.ts",
-    "openapi": "openapi-generator-cli generate",
     "typeorm": "typeorm-ts-node-commonjs -d ./src/infrastructure/typeorm/connection.ts",
     "migration:generate": "npx typeorm-ts-node-commonjs -d ./src/infrastructure/typeorm/connection.ts migration:generate src/infrastructure/typeorm/migrations/sql",
     "migration:run": "npx typeorm-ts-node-commonjs migration:run -d ./src/infrastructure/typeorm/connection.ts",
@@ -42,6 +41,7 @@
     "@types/node": "^20.10.0",
     "@types/supertest": "^2.0.16",
     "@types/swagger-ui-express": "^4.1.6",
+    "@types/uuid": "^9.0.7",
     "@typescript-eslint/eslint-plugin": "^6.12.0",
     "@typescript-eslint/parser": "^6.12.0",
     "eslint": "8.54.0",
@@ -68,6 +68,7 @@
     "reflect-metadata": "^0.1.13",
     "swagger-ui-express": "^5.0.0",
     "tsoa": "^5.1.1",
-    "typeorm": "^0.3.17"
+    "typeorm": "^0.3.17",
+    "uuid": "^9.0.1"
   }
 }

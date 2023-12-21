@@ -1,19 +1,18 @@
 import { ProjectDTO } from "../../../usecases/projects/project-dto";
 
-export class ProjectCreateParams {
+export class ProjectParams {
+  id: string;
   name: string;
   status: string;
 
-  constructor({ name, status }: { name: string; status: string }) {
-    this.name = name;
-    this.status = status;
+  constructor(params: ProjectParams) {
+    this.id = params.id;
+    this.name = params.name;
+    this.status = params.status;
   }
 
-  static toDTO({ name, status }: { name: string; status: string }): ProjectDTO {
-    return new ProjectDTO({
-      name,
-      status,
-    });
+  static toDTO(params: ProjectParams): ProjectDTO {
+    return new ProjectDTO(params);
   }
 }
 

@@ -24,9 +24,10 @@ const models: TsoaRoute.Models = {
         "additionalProperties": false,
     },
     // WARNING: This file was auto-generated with tsoa. Please do not modify it. Re-run tsoa to re-generate this file: https://github.com/lukeautry/tsoa
-    "ProjectCreateParams": {
+    "ProjectParams": {
         "dataType": "refObject",
         "properties": {
+            "id": {"dataType":"string","required":true},
             "name": {"dataType":"string","required":true},
             "status": {"dataType":"string","required":true},
         },
@@ -51,7 +52,7 @@ export function RegisterRoutes(app: Router) {
             async function ProjectController_createProject(request: any, response: any, next: any) {
             const args = {
                     _: {"in":"request","name":"_","required":true,"dataType":"object"},
-                    params: {"in":"body","name":"params","required":true,"ref":"ProjectCreateParams"},
+                    params: {"in":"body","name":"params","required":true,"ref":"ProjectParams"},
             };
 
             // WARNING: This file was auto-generated with tsoa. Please do not modify it. Re-run tsoa to re-generate this file: https://github.com/lukeautry/tsoa
@@ -69,6 +70,38 @@ export function RegisterRoutes(app: Router) {
 
 
               const promise = controller.createProject.apply(controller, validatedArgs as any);
+              promiseHandler(controller, promise, response, 200, next);
+            } catch (err) {
+                return next(err);
+            }
+        });
+        // WARNING: This file was auto-generated with tsoa. Please do not modify it. Re-run tsoa to re-generate this file: https://github.com/lukeautry/tsoa
+        app.put('/projects/:id',
+            authenticateMiddleware([{"AUTH0_USER":[]}]),
+            ...(fetchMiddlewares<RequestHandler>(ProjectController)),
+            ...(fetchMiddlewares<RequestHandler>(ProjectController.prototype.updateProject)),
+
+            async function ProjectController_updateProject(request: any, response: any, next: any) {
+            const args = {
+                    _: {"in":"request","name":"_","required":true,"dataType":"object"},
+                    params: {"in":"body","name":"params","required":true,"ref":"ProjectParams"},
+            };
+
+            // WARNING: This file was auto-generated with tsoa. Please do not modify it. Re-run tsoa to re-generate this file: https://github.com/lukeautry/tsoa
+
+            let validatedArgs: any[] = [];
+            try {
+                validatedArgs = getValidatedArgs(args, request, response);
+
+                const container: IocContainer = typeof iocContainer === 'function' ? (iocContainer as IocContainerFactory)(request) : iocContainer;
+
+                const controller: any = await container.get<ProjectController>(ProjectController);
+                if (typeof controller['setStatus'] === 'function') {
+                controller.setStatus(undefined);
+                }
+
+
+              const promise = controller.updateProject.apply(controller, validatedArgs as any);
               promiseHandler(controller, promise, response, 200, next);
             } catch (err) {
                 return next(err);

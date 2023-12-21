@@ -7,15 +7,7 @@ export class Project {
   private _createdAt: Date;
   private _updatedAt: Date;
 
-  constructor({
-    id,
-    name,
-    status,
-  }: {
-    id?: string;
-    name: string;
-    status: string;
-  }) {
+  constructor({ id, name, status }: { id?: string; name: string; status: string }) {
     this._id = id ?? "";
     this._name = new ProjectNameVO(name);
     this._status = new ProjectStatusVO(status);

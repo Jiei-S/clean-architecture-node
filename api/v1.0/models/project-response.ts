@@ -25,19 +25,18 @@ export interface ProjectResponse {
      * @type {string}
      * @memberof ProjectResponse
      */
-    id: string;
+    'id': string;
     /**
      * 
      * @type {string}
      * @memberof ProjectResponse
      */
-    name: string;
+    'name': string;
     /**
      * 
      * @type {string}
      * @memberof ProjectResponse
      */
-    status: string;
+    'status': string;
 }
-
 
